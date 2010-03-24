@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <current_observation>
+  <credit>University of Waterloo Weather Station</credit>
+  <credit_URL>http://weather.uwaterloo.ca/</credit_URL> 
+   <suggested_pickup>5, 20, 35, and 50 minutes after the hour</suggested_pickup> 
+  <suggested_pickup_period>15</suggested_pickup_period> 
+  <location>University of Waterloo,  Ontario, Canada</location> 
+  <latitude>43.28.26 N</latitude> 
+  <longitude>080.33.28 W</longitude> 
+  <elevation>334.4 m</elevation> 
+  <observation_month_text>December </observation_month_text> 
+  <observation_month_number>12</observation_month_number> 
+  <observation_day>3 </observation_day> 
+  <observation_year>2009</observation_year> 
+  <observation_time>5:15 pm </observation_time> 
+  <observation_hour> 17</observation_hour> 
+  <observation_minute> 15</observation_minute> 
+  <temperature_current_C>2.6  </temperature_current_C> 
+  <humidex_C>N_A </humidex_C> 
+  <windchill_C>-3.3 </windchill_C> 
+  <temperature_24hrmax_C>7.4  </temperature_24hrmax_C> 
+  <temperature_24hrmin_C>2.6  </temperature_24hrmin_C> 
+  <precipitation_15minutes_mm>0    </precipitation_15minutes_mm> 
+  <precipitation_1hr_mm>0    </precipitation_1hr_mm> 
+  <precipitation_24hr_mm>15   </precipitation_24hr_mm> 
+  <relative_humidity_percent>100 </relative_humidity_percent> 
+  <dew_point_C>2.5 </dew_point_C> 
+  <wind_speed_kph>17.8 </wind_speed_kph> 
+  <wind_direction> W </wind_direction> 
+  <wind_direction_degrees>270</wind_direction_degrees> 
+  <pressure_kpa>100.78</pressure_kpa> 
+  <pressure_trend>   Rising </pressure_trend> 
+  <incoming_shortwave_radiation_WM2>5.108 </incoming_shortwave_radiation_WM2> 
+  </current_observation>

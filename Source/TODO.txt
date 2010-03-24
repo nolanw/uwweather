@@ -1,0 +1,5 @@
+UW Weather TODO
+
+- "Get Dressed": recommend clothes to wear given temperature, feels like, wind speed, etc.
+    e.g. "Shorts and t-shirt" when 25º and no/little precipitation.
+- Request for wind speed/direction.

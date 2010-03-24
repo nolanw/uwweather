@@ -1,0 +1,31 @@
+UW Weather 2.0.5
+================
+
+* Updated copyright year.
+* Changed website menu item to use new domain (nolanw.ca).
+
+UW Weather 2.0.4
+================
+
+* Fixed crasher on 64-bit Macs.
+
+
+UW Weather 2.0.3
+================
+
+* Fetching info after a failure or once a network connection is established is much more robust/works.
+
+
+UW Weather 2.0.2
+================
+
+* Actually fixed formatting error.
+* Added fast termination support.
+
+
+UW Weather 2.0.1
+================
+
+* When computer awakes from sleep, a single update is scheduled for 1.5 minutes thereafter.
+* Moved the 'Quit UW Weather' menu item to the 'UW Weather' submenu.
+* Possibly fixed a formatting error (that I could not replicate) where -3.3ºC would show up as -33ºC (reported by Bernhard S.)
