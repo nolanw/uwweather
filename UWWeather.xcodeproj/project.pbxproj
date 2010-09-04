@@ -13,6 +13,10 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F20F6CF510CB722F00A9EC07 /* sample_data2.xml in Resources */ = {isa = PBXBuildFile; fileRef = F20F6CF410CB722F00A9EC07 /* sample_data2.xml */; };
 		F22678C010CE6DEE00EC8FD9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F22678BF10CE6DEE00EC8FD9 /* SystemConfiguration.framework */; };
+		F26D9488123212AC00ACE5CB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = F26D9487123212AC00ACE5CB /* RegexKitLite.m */; };
+		F26D9489123212AC00ACE5CB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = F26D9487123212AC00ACE5CB /* RegexKitLite.m */; };
+		F26D948E1232131800ACE5CB /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F26D948D1232131800ACE5CB /* libicucore.dylib */; };
+		F26D949B123213A800ACE5CB /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F26D948D1232131800ACE5CB /* libicucore.dylib */; };
 		F2921A4E10C9CFF70062E9AC /* NWLoginItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F2921A4D10C9CFF70062E9AC /* NWLoginItems.m */; };
 		F29D465510C872FD005C1691 /* UWWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F29D465410C872FD005C1691 /* UWWeatherInfo.m */; };
 		F29D47DF10C89A0B005C1691 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29D47DE10C89A0B005C1691 /* GHUnit.framework */; };
@@ -70,6 +74,9 @@
 		8D1107320486CEB800E47090 /* UW Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UW Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20F6CF410CB722F00A9EC07 /* sample_data2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sample_data2.xml; path = Tests/sample_data2.xml; sourceTree = "<group>"; };
 		F22678BF10CE6DEE00EC8FD9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F26D9486123212AB00ACE5CB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		F26D9487123212AC00ACE5CB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		F26D948D1232131800ACE5CB /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F2921A4C10C9CFF70062E9AC /* NWLoginItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWLoginItems.h; sourceTree = "<group>"; };
 		F2921A4D10C9CFF70062E9AC /* NWLoginItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWLoginItems.m; sourceTree = "<group>"; };
 		F29D465310C872FD005C1691 /* UWWeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UWWeatherInfo.h; sourceTree = "<group>"; };
@@ -105,6 +112,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F22678C010CE6DEE00EC8FD9 /* SystemConfiguration.framework in Frameworks */,
+				F26D949B123213A800ACE5CB /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F29D47DF10C89A0B005C1691 /* GHUnit.framework in Frameworks */,
+				F26D948E1232131800ACE5CB /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +146,7 @@
 				F29D47DE10C89A0B005C1691 /* GHUnit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				F22678BF10CE6DEE00EC8FD9 /* SystemConfiguration.framework */,
+				F26D948D1232131800ACE5CB /* libicucore.dylib */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -164,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				F29D481810C89DC5005C1691 /* Additions */,
+				F26D9485123212AB00ACE5CB /* RegexKitLite */,
 				F29D46EA10C88DAD005C1691 /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -207,6 +218,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F26D9485123212AB00ACE5CB /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				F26D9486123212AB00ACE5CB /* RegexKitLite.h */,
+				F26D9487123212AC00ACE5CB /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		F29D46EA10C88DAD005C1691 /* Tests */ = {
@@ -345,6 +365,7 @@
 				F29D484510C8A8B4005C1691 /* Test.m in Sources */,
 				F29D487A10C8B2B5005C1691 /* NSObject+BlockObservation.m in Sources */,
 				F2921A4E10C9CFF70062E9AC /* NWLoginItems.m in Sources */,
+				F26D9488123212AC00ACE5CB /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +383,7 @@
 				F29D482B10C89E69005C1691 /* NSString_NWAdditions.m in Sources */,
 				F29D482C10C89E69005C1691 /* Test.m in Sources */,
 				F29D484A10C8A933005C1691 /* NSObject+BlockObservation.m in Sources */,
+				F26D9489123212AC00ACE5CB /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +458,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -449,6 +472,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

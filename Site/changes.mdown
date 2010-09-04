@@ -1,8 +1,15 @@
+UW Weather 2.0.6
+================
+
+* Changed parsing of XML feed to extract numbers only.
+
+
 UW Weather 2.0.5
 ================
 
 * Updated copyright year.
 * Changed website menu item to use new domain (nolanw.ca).
+
 
 UW Weather 2.0.4
 ================

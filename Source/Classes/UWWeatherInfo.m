@@ -11,6 +11,7 @@
 #import "NSArray_NWAdditions.h"
 #import "NSString_NWAdditions.h"
 #import "CollectionUtils.h"
+#import "RegexKitLite.h"
 
 // XPaths to useful info.
 #define OBSERVATION_MONTH_PATH @".//observation_month_number"
@@ -81,7 +82,12 @@
     NSArray *nodes = [xml nodesForXPath:path error:&error];
     NSAssert1([nodes count] > 0, @"No data for path %@", path);
     NSAssert2(error == nil, @"Error for path %@: %@", path, error);
-    [strings addObject:[[[nodes firstObject] stringValue] trimWhitespace]];
+    NSString *nodeString = [[nodes firstObject] stringValue];
+    NSString *numberString = [nodeString stringByMatching:@"([0-9]+)" capture:1];
+    if (numberString)
+      [strings addObject:numberString];
+    else
+      [strings addObject:nodeString];
   }
 
   return strings;
