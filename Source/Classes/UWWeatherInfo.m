@@ -83,7 +83,7 @@
     NSAssert1([nodes count] > 0, @"No data for path %@", path);
     NSAssert2(error == nil, @"Error for path %@: %@", path, error);
     NSString *nodeString = [[nodes firstObject] stringValue];
-    NSString *numberString = [nodeString stringByMatching:@"([0-9]+)" capture:1];
+    NSString *numberString = [nodeString stringByMatching:@"(-?[0-9]+)" capture:1];
     if (numberString)
       [strings addObject:numberString];
     else

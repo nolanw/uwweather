@@ -1,3 +1,9 @@
+UW Weather 2.0.7
+================
+
+* Fixed parsing negative numbers from XML feed.
+
+
 UW Weather 2.0.6
 ================
 
