@@ -83,7 +83,7 @@
     NSAssert1([nodes count] > 0, @"No data for path %@", path);
     NSAssert2(error == nil, @"Error for path %@: %@", path, error);
     NSString *nodeString = [[nodes firstObject] stringValue];
-    NSString *numberString = [nodeString stringByMatching:@"(-?[0-9]+)" capture:1];
+    NSString *numberString = [nodeString stringByMatching:@"(-?[0-9]+\\.?[0-9]*)" capture:1];
     if (numberString)
       [strings addObject:numberString];
     else
@@ -126,8 +126,9 @@
   {
     numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"] autorelease]];
-    [numberFormatter setPositiveFormat:@"#'.'#"];
-    [numberFormatter setNegativeFormat:@"'-'#'.'#"];
+    [numberFormatter setPositiveFormat:@"#0.#"];
+    [numberFormatter setNegativeFormat:@"-#0.#"];
+    [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
   }
   
   currentTemperature = [numberFormatter numberFromString:[strings objectAtIndex:0]];
