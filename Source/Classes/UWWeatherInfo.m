@@ -11,7 +11,6 @@
 #import "NSArray_NWAdditions.h"
 #import "NSString_NWAdditions.h"
 #import "CollectionUtils.h"
-#import "RegexKitLite.h"
 
 // XPaths to useful info.
 #define OBSERVATION_MONTH_PATH @".//observation_month_number"

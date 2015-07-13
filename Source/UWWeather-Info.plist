@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSSupportsSuddenTermination</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>UWWeather.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.nwaite.UWWeather</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -34,5 +30,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSSupportsSuddenTermination</key>
+	<true/>
 </dict>
 </plist>
