@@ -10,15 +10,7 @@
 
 
 // Parses XML from the UW Weather Station into more readable values.
-@interface UWWeatherInfo : NSObject {
-  NSDate *observationDate;
-  NSNumber *currentTemperature;
-  NSNumber *feelsLikeTemperature;
-  NSNumber *fifteenMinutesPrecipitation;
-  NSNumber *oneHourPrecipitation;
-  NSNumber *twentyFourHoursPrecipitation;
-  NSNumber *windSpeed;
-}
+@interface UWWeatherInfo : NSObject
 
 @property (readonly) NSDate *observationDate;
 
@@ -41,9 +33,8 @@
 @property (readonly) NSNumber *windSpeed;
 
 // Return autoreleased instance of self using designated initializer.
-+ (id)weatherInfoWithXML:(NSXMLDocument *)xml;
++ (instancetype)weatherInfoWithXML:(NSXMLDocument *)xml;
 
-// Designated initializer.
-- (id)initWithXML:(NSXMLDocument *)xml;
+- (instancetype)initWithXML:(NSXMLDocument *)xml NS_DESIGNATED_INITIALIZER;
 
 @end

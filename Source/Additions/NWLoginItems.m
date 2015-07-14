@@ -44,7 +44,7 @@
   {
     item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(snapshot, snapshotIndex);
     LSSharedFileListItemResolve(item, 0, &itemURL, NULL);
-    if ([(NSURL *)itemURL isEqual:[bundle bundleURL]])
+    if ([(__bridge NSURL *)itemURL isEqual:[bundle bundleURL]])
       ret = (LSSharedFileListItemRef)CFRetain(item);
     CFRelease(itemURL);
   }
@@ -65,7 +65,7 @@ void EnsureBundle(NSBundle **bundle)
   LSSharedFileListRef loginItems = [self _sessionLoginItems];
   LSSharedFileListItemRef item = [self _sessionLoginItemForBundle:bundle];
   if (item == NULL)
-    item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (CFURLRef)[bundle bundleURL], NULL, NULL);
+    item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)[bundle bundleURL], NULL, NULL);
   CFRelease(item);
   CFRelease(loginItems);
 }

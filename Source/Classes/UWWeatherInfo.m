@@ -8,10 +8,6 @@
 
 #import "UWWeatherInfo.h"
 
-#import "NSArray_NWAdditions.h"
-#import "NSString_NWAdditions.h"
-#import "CollectionUtils.h"
-
 // XPaths to useful info.
 #define OBSERVATION_MONTH_PATH @".//observation_month_number"
 #define OBSERVATION_DAY_PATH @".//observation_day[1]"
@@ -46,7 +42,15 @@
 @end
 
 
-@implementation UWWeatherInfo
+@implementation UWWeatherInfo {
+    NSDate *observationDate;
+    NSNumber *currentTemperature;
+    NSNumber *feelsLikeTemperature;
+    NSNumber *fifteenMinutesPrecipitation;
+    NSNumber *oneHourPrecipitation;
+    NSNumber *twentyFourHoursPrecipitation;
+    NSNumber *windSpeed;
+}
 
 @synthesize observationDate;
 @synthesize currentTemperature;
@@ -56,7 +60,7 @@
 @synthesize twentyFourHoursPrecipitation;
 @synthesize windSpeed;
 
-- (id)initWithXML:(NSXMLDocument *)xml
+- (instancetype)initWithXML:(NSXMLDocument *)xml
 {
   self = [super init];
   if (self)
@@ -67,34 +71,46 @@
   return self;
 }
 
-+ (id)weatherInfoWithXML:(NSXMLDocument *)xml
++ (instancetype)weatherInfoWithXML:(NSXMLDocument *)xml
 {
-  return [[[self alloc] initWithXML:xml] autorelease];
+  return [[self alloc] initWithXML:xml];
 }
 
 - (NSArray *)_stringsForPaths:(NSArray *)paths inDocument:(NSXMLDocument *)xml
 {
-  NSMutableArray *strings = [NSMutableArray array];
-  for (NSString *path in paths)
-  {
-    NSError *error = nil;
-    NSArray *nodes = [xml nodesForXPath:path error:&error];
-    NSAssert1([nodes count] > 0, @"No data for path %@", path);
-    NSAssert2(error == nil, @"Error for path %@: %@", path, error);
-    NSString *nodeString = [[nodes firstObject] stringValue];
-    NSString *numberString = [nodeString stringByMatching:@"(-?[0-9]+\\.?[0-9]*)" capture:1];
-    if (numberString)
-      [strings addObject:numberString];
-    else
-      [strings addObject:nodeString];
-  }
-
-  return strings;
+    NSMutableArray *strings = [NSMutableArray array];
+    for (NSString *path in paths) {
+        NSError *error = nil;
+        NSArray *nodes = [xml nodesForXPath:path error:&error];
+        NSAssert1([nodes count] > 0, @"No data for path %@", path);
+        NSAssert2(error == nil, @"Error for path %@: %@", path, error);
+        NSString *nodeString = [[nodes firstObject] stringValue];
+        
+        static NSRegularExpression *numberRegex;
+        if (!numberRegex) {
+            NSError *error;
+            numberRegex = [NSRegularExpression regularExpressionWithPattern:@"(-?[0-9]+\\.?[0-9]*)" options:0 error:&error];
+            NSAssert(numberRegex, @"error creating number regex: %@", error);
+        }
+        
+        NSTextCheckingResult *result = [numberRegex firstMatchInString:nodeString options:0 range:NSMakeRange(0, nodeString.length)];
+        NSRange range = [result rangeAtIndex:1];
+        NSString *numberString;
+        if (range.location != NSNotFound) {
+            numberString = [nodeString substringWithRange:range];
+        }
+        if (numberString) {
+            [strings addObject:numberString];
+        } else {
+            [strings addObject:nodeString];
+        }
+    }
+    return strings;
 }
 
 - (void)_buildObservationDate:(NSXMLDocument *)xml
 {
-  NSArray *paths = $array(OBSERVATION_MONTH_PATH, OBSERVATION_DAY_PATH, OBSERVATION_YEAR_PATH, OBSERVATION_HOUR_PATH, OBSERVATION_MINUTE_PATH);
+  NSArray *paths = @[OBSERVATION_MONTH_PATH, OBSERVATION_DAY_PATH, OBSERVATION_YEAR_PATH, OBSERVATION_HOUR_PATH, OBSERVATION_MINUTE_PATH];
   NSMutableArray *strings = [NSMutableArray arrayWithArray:[self _stringsForPaths:paths inDocument:xml]];
   NSTimeZone *eastern = [NSTimeZone timeZoneWithName:UW_TIME_ZONE];
   if ([eastern isDaylightSavingTime])
@@ -108,7 +124,7 @@
   if (dateFormatter == nil)
   {
     dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"] autorelease]];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"]];
     [dateFormatter setDateFormat:@"M/d/y H:mm z"];
   }
   
@@ -117,14 +133,14 @@
 
 - (void)_pullTemperaturesAndPrecipitation:(NSXMLDocument *)xml
 {
-  NSArray *paths = $array(TEMPERATURE_CURRENT, TEMPERATURE_HUMIDEX, TEMPERATURE_WINDCHILL, PRECIPITATION_FIFTEEN_MINUTES, PRECIPITATION_ONE_HOUR, PRECIPITATION_TWENTY_FOUR_HOURS, WIND_SPEED);
+  NSArray *paths = @[TEMPERATURE_CURRENT, TEMPERATURE_HUMIDEX, TEMPERATURE_WINDCHILL, PRECIPITATION_FIFTEEN_MINUTES, PRECIPITATION_ONE_HOUR, PRECIPITATION_TWENTY_FOUR_HOURS, WIND_SPEED];
   NSArray *strings = [self _stringsForPaths:paths inDocument:xml];
   
   static NSNumberFormatter *numberFormatter = nil;
   if (numberFormatter == nil)
   {
     numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"] autorelease]];
+    [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"]];
     [numberFormatter setPositiveFormat:@"#0.#"];
     [numberFormatter setNegativeFormat:@"-#0.#"];
     [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];

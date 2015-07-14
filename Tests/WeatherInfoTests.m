@@ -6,7 +6,7 @@
 //  Copyright 2009 Nolan Waite. All rights reserved.
 //
 
-#import <GHUnit/GHUnit.h>
+#import <XCTest/XCTest.h>
 #import "UWWeatherInfo.h"
 
 @interface WeatherInfoTests : GHTestCase {}
