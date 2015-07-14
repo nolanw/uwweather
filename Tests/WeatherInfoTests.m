@@ -1,10 +1,4 @@
-//
-//  WeatherInfoTests.m
-//  UWWeather
-//
-//  Created by Nolan Waite on 09-12-03.
-//  Copyright 2009 Nolan Waite. All rights reserved.
-//
+// WeatherInfoTests.m – Public domain – http://nolanw.ca/uwweather/
 
 #import <XCTest/XCTest.h>
 #import "UWWeatherInfo.h"

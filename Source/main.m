@@ -1,10 +1,4 @@
-//
-//  main.m
-//  UWWeather
-//
-//  Created by Nolan Waite on 09-12-03.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+// main.m – Public domain – http://nolanw.ca/uwweather/
 
 #import <Cocoa/Cocoa.h>
 

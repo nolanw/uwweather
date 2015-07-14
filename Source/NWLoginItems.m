@@ -1,10 +1,4 @@
-//
-//  NWLoginItems.m
-//  UWWeather
-//
-//  Created by Nolan Waite on 09-12-04.
-//  Copyright 2009 Nolan Waite. All rights reserved.
-//
+// NWLoginItems.m – Public domain – http://nolanw.ca/uwweather/
 
 #import "NWLoginItems.h"
 

@@ -1,9 +1,4 @@
-//
-//  NWLoginItems.h
-//
-//  Created by Nolan Waite on 09-12-04.
-//  Copyright 2009 Nolan Waite. All rights reserved.
-//
+// NWLoginItems.h – Public domain – http://nolanw.ca/uwweather/
 
 #import <Cocoa/Cocoa.h>
 

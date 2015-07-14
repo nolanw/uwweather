@@ -1,10 +1,4 @@
-//
-//  UWWeatherAppDelegate.m
-//  UWWeather
-//
-//  Created by Nolan Waite on 09-12-03.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+// UWWeatherAppDelegate.m – Public domain – http://nolanw.ca/uwweather/
 
 #import "UWWeatherAppDelegate.h"
 #import "UWWeatherInfo.h"
