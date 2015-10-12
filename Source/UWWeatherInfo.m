@@ -4,6 +4,7 @@
 
 // XPaths to useful info.
 #define OBSERVATION_MONTH_PATH @".//observation_month_number"
+#define OBSERVATION_MONTH_WORD_PATH @".//observation_month_text"
 #define OBSERVATION_DAY_PATH @".//observation_day[1]"
 #define OBSERVATION_YEAR_PATH @".//observation_year[1]"
 #define OBSERVATION_HOUR_PATH @".//observation_hour[1]"
@@ -76,8 +77,12 @@
     for (NSString *path in paths) {
         NSError *error = nil;
         NSArray *nodes = [xml nodesForXPath:path error:&error];
-        NSAssert1([nodes count] > 0, @"No data for path %@", path);
         NSAssert2(error == nil, @"Error for path %@: %@", path, error);
+        if ([nodes count] == 0) {
+            NSLog(@"%s no data for path %@; continuing", __PRETTY_FUNCTION__, path);
+            [strings addObject:[NSNull null]];
+            continue;
+        }
         NSString *nodeString = [[nodes firstObject] stringValue];
         
         static NSRegularExpression *numberRegex;
@@ -90,7 +95,7 @@
         NSTextCheckingResult *result = [numberRegex firstMatchInString:nodeString options:0 range:NSMakeRange(0, nodeString.length)];
         NSRange range = [result rangeAtIndex:1];
         NSString *numberString;
-        if (range.location != NSNotFound) {
+        if (result && range.location != NSNotFound) {
             numberString = [nodeString substringWithRange:range];
         }
         if (numberString) {
@@ -104,7 +109,7 @@
 
 - (void)_buildObservationDate:(NSXMLDocument *)xml
 {
-  NSArray *paths = @[OBSERVATION_MONTH_PATH, OBSERVATION_DAY_PATH, OBSERVATION_YEAR_PATH, OBSERVATION_HOUR_PATH, OBSERVATION_MINUTE_PATH];
+  NSArray *paths = @[OBSERVATION_MONTH_PATH, OBSERVATION_MONTH_WORD_PATH, OBSERVATION_DAY_PATH, OBSERVATION_YEAR_PATH, OBSERVATION_HOUR_PATH, OBSERVATION_MINUTE_PATH];
   NSMutableArray *strings = [NSMutableArray arrayWithArray:[self _stringsForPaths:paths inDocument:xml]];
   NSTimeZone *eastern = [NSTimeZone timeZoneWithName:UW_TIME_ZONE];
   if ([eastern isDaylightSavingTime])
@@ -112,15 +117,18 @@
   else
     [strings addObject:@"EST"];
   
-  NSString *dateString = [NSString stringWithFormat:@"%@/%@/%@ %@:%@ %@", [strings objectAtIndex:0], [strings objectAtIndex:1], [strings objectAtIndex:2], [strings objectAtIndex:3], [strings objectAtIndex:4], [strings objectAtIndex:5]];
-  
-  static NSDateFormatter *dateFormatter = nil;
-  if (dateFormatter == nil)
-  {
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"]];
-    [dateFormatter setDateFormat:@"M/d/y H:mm z"];
+  // The month as a number has suddenly disappeared, so fall back to the month as a word.
+  NSString *month = [strings objectAtIndex:1];
+  NSString *monthFormat = @"M";
+  if ([[NSNull null] isEqual:month]) {
+    month = [strings objectAtIndex:2];
+    monthFormat = @"MMMM";
   }
+  NSString *dateString = [NSString stringWithFormat:@"%@/%@/%@ %@:%@ %@", month, [strings objectAtIndex:2], [strings objectAtIndex:3], [strings objectAtIndex:4], [strings objectAtIndex:5], [strings objectAtIndex:6]];
+  
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_CA"]];
+  [dateFormatter setDateFormat:[NSString stringWithFormat:@"%@/d/y H:m z", monthFormat]];
   
   observationDate = [dateFormatter dateFromString:dateString];
 }
