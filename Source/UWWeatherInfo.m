@@ -66,6 +66,12 @@
   return self;
 }
 
+- (instancetype)init
+{
+    NSAssert(NO, @"Use -initWithXML:");
+    return [self initWithXML:nil];
+}
+
 + (instancetype)weatherInfoWithXML:(NSXMLDocument *)xml
 {
   return [[self alloc] initWithXML:xml];
